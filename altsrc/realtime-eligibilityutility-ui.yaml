@@ -1,0 +1,26 @@
+name: Quadax.Realtime.EligibilityUtility.UI.$(BuildID)
+trigger:
+  branches:
+    include:
+      - master
+      - develop
+      - feature/*
+      - release/*
+      - hotfix/*
+      - bugfix/*
+
+resources:
+ repositories:
+   - repository: Quadax.Rco.Realtime.EligibilityUtility.UI
+     type: git
+     name: Devops Shared/Quadax.Rco.Realtime.EligibilityUtility.UI
+
+variables:
+  dockerRegistryServiceConnection: "acr-quadax"
+  imageRepository: "quadax/realtime-eligibilityutilityui-webapp"
+  containerRegistry: "quadax.azurecr.io"
+  dockerfilePath: "$(Build.SourcesDirectory)/**/Dockerfile"
+  gatewayVersion: "$(Build.BuildId)"
+
+extends:
+  template: realtime-elibilityutilityui-ui.yaml@Quadax.Rco.Realtime.EligibilityUtility.UI
